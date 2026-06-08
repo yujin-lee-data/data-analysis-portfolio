@@ -1,0 +1,4 @@
+device_category,session_start_users,view_item_users,add_to_cart_users,begin_checkout_users,purchase_users,session_to_purchase_rate
+mobile,107981,24810,5142,3968,1851,0.0171419045943267
+desktop,157079,36323,7384,5665,2541,0.0161765735712603
+tablet,6175,1443,276,219,97,0.0157085020242915

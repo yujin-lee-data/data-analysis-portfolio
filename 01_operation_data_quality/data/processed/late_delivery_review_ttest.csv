@@ -1,0 +1,2 @@
+﻿test_name,group_1,group_1_n,group_1_mean,group_2,group_2_n,group_2_mean,mean_difference_group1_minus_group2,t_statistic,p_value,interpretation_note
+Welch t-test,late_delivery_false,91523,4.2143,late_delivery_true,7701,2.5665,1.6478,85.232408,<0.001,"통계적으로 평균 차이는 확인되나, 인과관계를 의미하지 않음"

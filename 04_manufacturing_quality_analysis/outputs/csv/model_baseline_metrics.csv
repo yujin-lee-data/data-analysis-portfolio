@@ -1,0 +1,12 @@
+metric,value
+model_type,logistic_regression_numpy_baseline
+role,auxiliary_reference_only
+n_features_used,558
+n_train,1096
+n_test,471
+test_fail_count,20
+accuracy,0.841
+recall_fail,0.3
+precision_fail,0.09
+roc_auc,0.667
+note,imbalanced data; accuracy alone is misleading; reference signal only

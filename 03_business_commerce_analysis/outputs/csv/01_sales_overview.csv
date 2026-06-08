@@ -1,0 +1,2 @@
+﻿transaction_rows,customers,baskets,products,stores,relative_day_min,relative_day_max,relative_week_min,relative_week_max,total_sales_value,total_quantity,avg_basket_value,median_basket_value,avg_items_per_basket,coupon_basket_rate
+2595732,2500,276484,92339,582,1,711,1,102,8057463.079999994,260685622,29.142601669536038,17.07,9.388362436886041,0.06058578434918476

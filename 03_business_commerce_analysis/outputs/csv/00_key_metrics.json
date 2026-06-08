@@ -1,0 +1,14 @@
+{
+  "customers": 2500,
+  "baskets": 276484,
+  "total_sales_value": 8057463.079999994,
+  "avg_basket_value": 29.142601669536038,
+  "period_days": "DAY 1-711",
+  "period_weeks": "WEEK 1-102",
+  "top20_sales_share": 0.5304632745521684,
+  "top_category": "COUPON/MISC ITEMS",
+  "top_category_sales_share": 0.06387689461184598,
+  "coupon_basket_rate": 0.06058578434918476,
+  "best_campaign_type": "TypeA",
+  "best_campaign_type_response": 0.1595878361397336
+}

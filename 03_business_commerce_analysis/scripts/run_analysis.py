@@ -89,7 +89,7 @@ cust['coupon_basket_rate'] = cust['coupon_baskets'] / cust['purchase_count']
 cust = cust.sort_values('total_sales', ascending=False).reset_index(drop=True)
 cust['sales_rank'] = np.arange(1, len(cust)+1)
 cust['sales_rank_pct'] = cust['sales_rank'] / len(cust)
-cust['sales_contribution_segment'] = pd.cut(cust['sales_rank_pct'], bins=[0,.2,.8,1], labels=['Top 20% customers','Middle 60% customers','Bottom 20% customers'], include_lowest=True)
+cust['sales_contribution_segment'] = pd.cut(cust['sales_rank_pct'], bins=[0,.2,.8,1], labels=['Top 20% households','Middle 60% households','Bottom 20% households'], include_lowest=True)
 cust['repurchase_group'] = np.where(cust['purchase_count'] >= 2, '2+ baskets', '1 basket')
 cust.to_csv(OUT_CSV/'02_customer_sales_repurchase.csv', index=False, encoding='utf-8-sig')
 
@@ -143,8 +143,7 @@ metrics = {
     'total_sales_value': float(overview.loc[0,'total_sales_value']), 'avg_basket_value': float(overview.loc[0,'avg_basket_value']),
     'period_days': f"DAY {int(tr['day'].min())}-{int(tr['day'].max())}",
     'period_weeks': f"WEEK {int(tr['week_no'].min())}-{int(tr['week_no'].max())}",
-    'top20_sales_share': float(seg.loc[seg['sales_contribution_segment'].astype(str).eq('Top 20% customers'),'sales_share'].iloc[0]),
-    'top_category': str(cat_summary.iloc[0]['commodity_desc']), 'top_category_sales_share': float(cat_summary.iloc[0]['sales_share']),
+'top20_sales_share': float(seg.loc[seg['sales_contribution_segment'].astype(str).eq('Top 20% households'),'sales_share'].iloc[0]),    'top_category': str(cat_summary.iloc[0]['commodity_desc']), 'top_category_sales_share': float(cat_summary.iloc[0]['sales_share']),
     'coupon_basket_rate': float(overview.loc[0,'coupon_basket_rate']),
     'best_campaign_type': str(camp_type.sort_values('response_rate_observed', ascending=False).iloc[0]['description']),
     'best_campaign_type_response': float(camp_type.sort_values('response_rate_observed', ascending=False).iloc[0]['response_rate_observed'])
@@ -153,7 +152,7 @@ metrics = {
 
 plt.rcParams['axes.unicode_minus'] = False
 plt.figure(figsize=(9,5)); plot_seg=seg.copy(); plot_seg['sales_share_pct']=plot_seg['sales_share']*100
-plt.bar(plot_seg['sales_contribution_segment'].astype(str), plot_seg['sales_share_pct']); plt.title('Sales Share by Customer Contribution Segment'); plt.ylabel('Sales Share (%)'); plt.xticks(rotation=15, ha='right'); plt.tight_layout(); plt.savefig(OUT_CHART/'customer_segment_sales_share.png', dpi=180); plt.close()
+plt.bar(plot_seg['sales_contribution_segment'].astype(str), plot_seg['sales_share_pct']); plt.title('Sales Share by Household Contribution Segment'); plt.ylabel('Sales Share (%)'); plt.xticks(rotation=15, ha='right'); plt.tight_layout(); plt.savefig(OUT_CHART/'customer_segment_sales_share.png', dpi=180); plt.close()
 plt.figure(figsize=(9,5)); top=cat_summary.head(10).sort_values('total_sales'); plt.barh(top['commodity_desc'].astype(str), top['total_sales']); plt.title('Top 10 Commodity Groups by Sales'); plt.xlabel('Sales Value'); plt.tight_layout(); plt.savefig(OUT_CHART/'category_sales_top10.png', dpi=180); plt.close()
 plt.figure(figsize=(9,5)); plt.plot(weekly['week_no'], weekly['weekly_sales'], marker='o', markersize=2); plt.title('Weekly Sales Trend (Relative WEEK_NO)'); plt.xlabel('Relative WEEK_NO'); plt.ylabel('Sales Value'); plt.tight_layout(); plt.savefig(OUT_CHART/'weekly_sales_trend.png', dpi=180); plt.close()
 plt.figure(figsize=(8,5)); cv=coupon_vs.copy(); plt.bar(cv['coupon_redeemer_group'], cv['avg_sales_per_customer']); plt.title('Avg Sales per Customer: Coupon Redeemer vs Non-redeemer'); plt.ylabel('Avg Sales per Customer'); plt.tight_layout(); plt.savefig(OUT_CHART/'coupon_redeemer_avg_sales.png', dpi=180); plt.close()
